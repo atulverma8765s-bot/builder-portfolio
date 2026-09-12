@@ -1,0 +1,409 @@
+[
+  {
+    "id": "dev-sophia-chen",
+    "slug": "sophia-chen",
+    "title": "Sophia Chen | Lead Product Designer & Creative Developer",
+    "createdAt": "2026-09-12T11:01:46.465Z",
+    "updatedAt": "2026-09-12T11:01:46.465Z",
+    "views": 313,
+    "design": {
+      "theme": "editorial",
+      "fontFamily": "Outfit",
+      "accentColor": "#ec4899",
+      "secondaryColor": "#8b5cf6",
+      "cardStyle": "subtle",
+      "borderRadius": "rounded-2xl",
+      "spacing": "comfortable"
+    },
+    "seo": {
+      "metaTitle": "Sophia Chen - Creative Product Designer & Frontend Dev",
+      "metaDescription": "Bridging the gap between human-centric design and pixel-perfect code.",
+      "keywords": "Product Designer, UI/UX, Creative Dev, Design Systems"
+    },
+    "hero": {
+      "name": "Sophia Chen",
+      "pronouns": "she/her",
+      "badge": "✨ Crafting next-generation digital interfaces",
+      "title": "Lead Product Designer & Creative Developer",
+      "tagline": "Designing intuitive interfaces, cohesive design systems, and delightful digital journeys.",
+      "avatarUrl": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&auto=format&fit=crop&q=80",
+      "location": "New York, NY",
+      "primaryCta": {
+        "text": "View Design Work",
+        "link": "#projects"
+      },
+      "secondaryCta": {
+        "text": "Book Discovery Call",
+        "link": "#contact"
+      },
+      "socials": {
+        "github": "https://github.com",
+        "linkedin": "https://linkedin.com",
+        "twitter": "https://twitter.com",
+        "email": "sophia@example.com"
+      }
+    },
+    "about": {
+      "enabled": true,
+      "title": "Design Philosophy",
+      "summary": "I believe great products are born at the intersection of empathetic user research, structured design systems, and fluid micro-interactions.",
+      "story": "With a background in both human-computer interaction and modern frontend development, I don't just hand off Figma prototypes—I prototype in live code, validate with real users, and ensure design intent remains pure all the way to production.",
+      "stats": [
+        {
+          "label": "Products Launched",
+          "value": "30+"
+        },
+        {
+          "label": "Design System Users",
+          "value": "120+ Devs"
+        },
+        {
+          "label": "Design Awards",
+          "value": "4"
+        }
+      ],
+      "quickFacts": [
+        "Figma & Design Tokens wizard",
+        "Micro-animations with Framer Motion & CSS",
+        "Advocate for accessible, inclusive UX"
+      ]
+    },
+    "skills": {
+      "enabled": true,
+      "title": "Design & Tech Toolkit",
+      "categories": [
+        {
+          "name": "Product Design & UX",
+          "skills": [
+            {
+              "name": "Figma & FigJam",
+              "level": "Expert"
+            },
+            {
+              "name": "Design Systems & Tokens",
+              "level": "Expert"
+            },
+            {
+              "name": "User Research & Usability Testing",
+              "level": "Advanced"
+            },
+            {
+              "name": "Information Architecture",
+              "level": "Advanced"
+            }
+          ]
+        },
+        {
+          "name": "Creative Front-End",
+          "skills": [
+            {
+              "name": "HTML5 / Modern CSS",
+              "level": "Expert"
+            },
+            {
+              "name": "React & Next.js",
+              "level": "Advanced"
+            },
+            {
+              "name": "Tailwind CSS",
+              "level": "Expert"
+            },
+            {
+              "name": "Motion & SVG Animation",
+              "level": "Advanced"
+            }
+          ]
+        }
+      ]
+    },
+    "experience": {
+      "enabled": true,
+      "title": "Career Journey",
+      "items": [
+        {
+          "id": "exp-sophia-1",
+          "company": "Loom & Canvas Design Studio",
+          "role": "Design Director",
+          "period": "2022 - Present",
+          "location": "New York, NY",
+          "type": "Full-Time",
+          "description": "Leading creative strategy and brand design for premier tech startups.",
+          "achievements": [
+            "Built unified design system utilized by 4 cross-functional product squads.",
+            "Increased consumer conversion rates by 34% through redesigned onboarding funnel."
+          ],
+          "technologies": [
+            "Figma",
+            "Design Systems",
+            "React",
+            "Prototyping"
+          ]
+        }
+      ]
+    },
+    "projects": {
+      "enabled": true,
+      "title": "Selected Works",
+      "items": [
+        {
+          "id": "proj-sophia-1",
+          "title": "FinFlow Mobile Banking",
+          "tagline": "Reimagined banking experience for millennial investors.",
+          "description": "A complete overhaul of banking UX prioritizing clarity, budget goal visualizations, and frictionless money movement.",
+          "technologies": [
+            "Figma",
+            "React Native",
+            "Micro-Interactions"
+          ],
+          "liveUrl": "https://example.com",
+          "githubUrl": "",
+          "imageUrl": "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=800&auto=format&fit=crop&q=80",
+          "featured": true,
+          "metric": "🏆 Featured in Awwwards Mobile of the Day"
+        }
+      ]
+    },
+    "services": {
+      "enabled": true,
+      "title": "Capabilities",
+      "items": [
+        {
+          "id": "serv-sophia-1",
+          "title": "End-to-End Product Design",
+          "description": "From napkin sketches to hi-fi clickable prototypes and design token libraries.",
+          "price": "Project-Based",
+          "delivery": "3-6 Weeks"
+        }
+      ]
+    },
+    "testimonials": {
+      "enabled": false,
+      "title": "Kind Words",
+      "items": []
+    },
+    "education": {
+      "enabled": true,
+      "title": "Education",
+      "items": [
+        {
+          "id": "edu-sophia-1",
+          "degree": "B.Des in Interaction Design",
+          "institution": "Rhode Island School of Design (RISD)",
+          "year": "2015 - 2019",
+          "details": "Specialized in digital interfaces, typography, and experimental media."
+        }
+      ]
+    },
+    "contact": {
+      "enabled": true,
+      "title": "Start a Conversation",
+      "subtitle": "Got a project in mind? Let's build something beautiful together.",
+      "email": "sophia@example.com",
+      "location": "New York, NY"
+    },
+    "footer": {
+      "customText": "Designed with love & precision. Crafted on FolioCraft.",
+      "showBadge": true
+    }
+  },
+  {
+    "id": "dev-marcus-terminal",
+    "slug": "marcus-vance",
+    "title": "Marcus Vance | Cybersec & Systems Hacker",
+    "createdAt": "2026-09-12T11:01:46.465Z",
+    "updatedAt": "2026-09-12T11:01:46.465Z",
+    "views": 189,
+    "design": {
+      "theme": "terminal",
+      "fontFamily": "Fira Code",
+      "accentColor": "#10b981",
+      "secondaryColor": "#34d399",
+      "cardStyle": "flat",
+      "borderRadius": "rounded-none",
+      "spacing": "compact"
+    },
+    "seo": {
+      "metaTitle": "Marcus Vance - Systems Engineer & Security Analyst",
+      "metaDescription": "Kernel exploitation, distributed systems, and low-level engineering.",
+      "keywords": "Systems, Security, Rust, C, Linux, DevOps"
+    },
+    "hero": {
+      "name": "Marcus Vance",
+      "pronouns": "he/him",
+      "badge": "root@sec-ops:~$ status --active",
+      "title": "Systems Engineer & Security Researcher",
+      "tagline": "Low-level systems, kernel development, network security, and infrastructure resilience.",
+      "avatarUrl": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&auto=format&fit=crop&q=80",
+      "location": "Austin, TX (Remote)",
+      "primaryCta": {
+        "text": "./inspect-projects.sh",
+        "link": "#projects"
+      },
+      "secondaryCta": {
+        "text": "./send-message.sh",
+        "link": "#contact"
+      },
+      "socials": {
+        "github": "https://github.com",
+        "linkedin": "https://linkedin.com",
+        "email": "marcus@security.dev"
+      }
+    },
+    "about": {
+      "enabled": true,
+      "title": "$ cat about_me.txt",
+      "summary": "I build robust, high-performance systems and uncover security vulnerabilities before bad actors can.",
+      "story": "Passionate about Linux internals, Rust, distributed protocols, and zero-trust infrastructure architecture.",
+      "stats": [
+        {
+          "label": "CVEs Discovered",
+          "value": "7"
+        },
+        {
+          "label": "Kernel Patches Merged",
+          "value": "14"
+        },
+        {
+          "label": "Uptime Record",
+          "value": "99.999%"
+        }
+      ],
+      "quickFacts": [
+        "Rust, C, Assembly, Go",
+        "Linux eBPF & Packet Filtering",
+        "Zero-Trust Architecture"
+      ]
+    },
+    "skills": {
+      "enabled": true,
+      "title": "$ ls -la skills/",
+      "categories": [
+        {
+          "name": "Low-Level & Languages",
+          "skills": [
+            {
+              "name": "Rust",
+              "level": "Expert"
+            },
+            {
+              "name": "C / C++",
+              "level": "Advanced"
+            },
+            {
+              "name": "Go",
+              "level": "Advanced"
+            },
+            {
+              "name": "Python / Bash",
+              "level": "Expert"
+            }
+          ]
+        },
+        {
+          "name": "Security & Infrastructure",
+          "skills": [
+            {
+              "name": "eBPF & Linux Kernel",
+              "level": "Advanced"
+            },
+            {
+              "name": "Kubernetes & Network Policy",
+              "level": "Expert"
+            },
+            {
+              "name": "Penetration Testing & Red Teaming",
+              "level": "Advanced"
+            },
+            {
+              "name": "Cryptography & PKI",
+              "level": "Intermediate"
+            }
+          ]
+        }
+      ]
+    },
+    "experience": {
+      "enabled": true,
+      "title": "$ history | grep employment",
+      "items": [
+        {
+          "id": "exp-marcus-1",
+          "company": "IronGate Cyber Defense",
+          "role": "Staff Security Infrastructure Engineer",
+          "period": "2021 - Present",
+          "location": "Austin, TX",
+          "type": "Full-Time",
+          "description": "Building zero-trust network infrastructure and autonomous intrusion defense systems.",
+          "achievements": [
+            "Implemented custom eBPF network filtering layer dropping DDoS attack vectors at kernel level with 0% CPU spike.",
+            "Audited mission-critical cryptographic modules for FedRAMP High certification."
+          ],
+          "technologies": [
+            "Rust",
+            "eBPF",
+            "Linux",
+            "WireGuard",
+            "Kubernetes"
+          ]
+        }
+      ]
+    },
+    "projects": {
+      "enabled": true,
+      "title": "$ find ./projects -type f",
+      "items": [
+        {
+          "id": "proj-marcus-1",
+          "title": "PacketGuard-rs",
+          "tagline": "High-speed network packet inspection and anomaly filter written in Rust.",
+          "description": "Zero-copy packet parsing engine capable of wire-speed packet analysis on 10Gbps interfaces.",
+          "technologies": [
+            "Rust",
+            "XDP",
+            "eBPF",
+            "Prometheus"
+          ],
+          "liveUrl": "",
+          "githubUrl": "https://github.com",
+          "imageUrl": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&auto=format&fit=crop&q=80",
+          "featured": true,
+          "metric": "🛡️ Defended 100M+ malicious requests"
+        }
+      ]
+    },
+    "services": {
+      "enabled": false,
+      "title": "Services",
+      "items": []
+    },
+    "testimonials": {
+      "enabled": false,
+      "title": "Testimonials",
+      "items": []
+    },
+    "education": {
+      "enabled": true,
+      "title": "$ cat credentials.log",
+      "items": [
+        {
+          "id": "edu-marcus-1",
+          "degree": "B.S. in Computer Engineering",
+          "institution": "University of Texas at Austin",
+          "year": "2015 - 2019",
+          "details": "Specialized in Embedded Systems, Computer Architecture, and Cryptography."
+        }
+      ]
+    },
+    "contact": {
+      "enabled": true,
+      "title": "$ ping marcus@security.dev",
+      "subtitle": "Encrypted communications welcomed. Send an inquiry or reach out directly.",
+      "email": "marcus@security.dev",
+      "location": "Austin, TX"
+    },
+    "footer": {
+      "customText": "TERMINAL_SESSION: EXECUTED_CLEANLY [STATUS: 200 OK]",
+      "showBadge": true
+    }
+  }
+]

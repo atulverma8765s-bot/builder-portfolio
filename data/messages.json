@@ -1,0 +1,72 @@
+[
+  {
+    "id": "msg-1789212017260-6vtul",
+    "portfolioId": "dev-sophia-chen",
+    "senderName": "atul verma",
+    "senderEmail": "atulverma876539@gmail.com",
+    "subject": "Portfolio Visitor Message",
+    "message": "hooo",
+    "createdAt": "2026-09-12T11:20:17.260Z",
+    "read": false
+  },
+  {
+    "id": "msg-1789211315289-lwnrw",
+    "portfolioId": "folio-1789211315256",
+    "senderName": "David Recruiter",
+    "senderEmail": "david@recruiting-firm.com",
+    "subject": "Senior QA Architect Role",
+    "message": "Hello Jordan, we have an exciting leadership opportunity for you!",
+    "createdAt": "2026-09-12T11:08:35.289Z",
+    "read": true
+  },
+  {
+    "id": "msg-1789211294310-n49dy",
+    "portfolioId": "folio-1789211294267",
+    "senderName": "David Recruiter",
+    "senderEmail": "david@recruiting-firm.com",
+    "subject": "Senior QA Architect Role",
+    "message": "Hello Jordan, we have an exciting leadership opportunity for you!",
+    "createdAt": "2026-09-12T11:08:14.310Z",
+    "read": true
+  },
+  {
+    "id": "msg-1789211234108-iu7i3",
+    "portfolioId": "folio-1789211234061",
+    "senderName": "David Recruiter",
+    "senderEmail": "david@recruiting-firm.com",
+    "subject": "Senior QA Architect Role",
+    "message": "Hello Jordan, we have an exciting leadership opportunity for you!",
+    "createdAt": "2026-09-12T11:07:14.108Z",
+    "read": true
+  },
+  {
+    "id": "msg-1789210971774-dfnup",
+    "portfolioId": "dev-alex-rivera",
+    "senderName": "Alice Miller",
+    "senderEmail": "alice@acme.com",
+    "subject": "Lead Architect Opportunity",
+    "message": "Hi Alex, we have an exciting role for you.",
+    "createdAt": "2026-09-12T11:02:51.774Z",
+    "read": false
+  },
+  {
+    "id": "msg-sample-1",
+    "portfolioId": "dev-alex-rivera",
+    "senderName": "Jessica Wong",
+    "senderEmail": "jessica.wong@techinnovate.io",
+    "subject": "Staff Full-Stack Role at TechInnovate",
+    "message": "Hi Alex, I came across your portfolio and was blown away by your open-source work and distributed systems background. We're looking for a lead architect for our cloud streaming engine. Would love to set up a 20-min chat!",
+    "createdAt": "2026-09-12T07:01:46.470Z",
+    "read": false
+  },
+  {
+    "id": "msg-sample-2",
+    "portfolioId": "dev-alex-rivera",
+    "senderName": "Marcus Brody",
+    "senderEmail": "marcus@seedfund.vc",
+    "subject": "Advisory & Consulting inquiry",
+    "message": "Hey Alex! Loved your telemetry platform case study. We have two portfolio companies in need of performance and scaling audits. Are you taking on consulting projects this quarter?",
+    "createdAt": "2026-09-11T11:01:46.470Z",
+    "read": true
+  }
+]
