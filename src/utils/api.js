@@ -1,4 +1,4 @@
-const API_BASE = '/api';
+const API_BASE = 'https://builder-portfolio-api.onrender.com/api';
 
 export const api = {
   async getPortfolios() {
