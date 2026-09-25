@@ -9,6 +9,7 @@ export function PortfolioProvider({ children }) {
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
   const [saveSuccess, setSaveSuccess] = useState(false);
+  const [previewRefreshKey, setPreviewRefreshKey] = useState(0);
   const [error, setError] = useState(null);
 
   // Editor states
@@ -26,16 +27,17 @@ export function PortfolioProvider({ children }) {
       setIsLoading(true);
       const list = await api.getPortfolios();
       setPortfolios(list);
-      if (list.length > 0 && !currentPortfolio) {
-        setCurrentPortfolio(list[0]);
-      }
+      setCurrentPortfolio((prev) => {
+        if (prev || list.length === 0) return prev;
+        return list[0];
+      });
     } catch (err) {
       console.error(err);
       setError(err.message);
     } finally {
       setIsLoading(false);
     }
-  }, [currentPortfolio]);
+  }, []);
 
   useEffect(() => {
     fetchAllPortfolios();
@@ -285,3 +287,5 @@ export function usePortfolio() {
   }
   return context;
 }
+
+
