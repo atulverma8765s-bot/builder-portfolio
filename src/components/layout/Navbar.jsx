@@ -14,7 +14,13 @@ import {
   Check, 
   ChevronDown, 
   Eye, 
-  Wand2 
+  Wand2,
+  User,
+  LayoutGrid,
+  Settings,
+  Share2,
+  Sun,
+  Moon
 } from 'lucide-react';
 import { usePortfolio } from '../../context/PortfolioContext';
 import { useAuth } from '../../context/AuthContext';
@@ -43,7 +49,7 @@ export function Navbar({ onOpenExport, onOpenTemplates, onOpenAi }) {
   const { user } = useAuth();
 
   return (
-    <header className="h-16 bg-slate-900 border-b border-slate-800 px-4 flex items-center justify-between select-none z-30 shrink-0">
+    <header className="h-16 bg-slate-900 border-b border-slate-800 px-4 flex items-center justify-between select-none z-[9999] shrink-0">
       {/* Left Brand & Portfolio Switcher */}
       <div className="flex items-center gap-4">
         <div className="flex items-center gap-2">
@@ -258,7 +264,7 @@ export function Navbar({ onOpenExport, onOpenTemplates, onOpenAi }) {
           </button>
 
           {profileOpen && (
-            <div className="absolute right-[calc(100%+8px)] top-0 w-60 rounded-2xl border border-white/10 bg-[#0b1020] shadow-2xl p-3 z-[100]">
+            <div className="absolute right-0 top-12 w-72 rounded-2xl border border-white/10 bg-[#0b1020] shadow-2xl p-3 z-[100]">
               <div className="flex items-center gap-3 p-2 border-b border-white/10 pb-3">
                 {user?.photoURL ? (
                   <img
@@ -284,6 +290,22 @@ export function Navbar({ onOpenExport, onOpenTemplates, onOpenAi }) {
                 </div>
               </div>
 
+              <div className="py-2 border-b border-white/10">
+                <button className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-slate-300 hover:bg-white/5 transition-all">
+                  <User className="w-4 h-4 text-indigo-400" />
+                  <span>Account</span>
+                </button>
+
+                <button className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-slate-300 hover:bg-white/5 transition-all">
+                  <LayoutGrid className="w-4 h-4 text-cyan-400" />
+                  <span>My Portfolios</span>
+                </button>
+
+                <button className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-slate-300 hover:bg-white/5 transition-all">
+                  <Settings className="w-4 h-4 text-violet-400" />
+                  <span>Settings</span>
+                </button>
+              </div>
               <button
                 onClick={() => signOut(auth)}
                 className="w-full mt-3 rounded-xl px-3 py-2 text-left text-sm text-red-400 hover:bg-red-500/10 transition-all"
@@ -297,14 +319,3 @@ export function Navbar({ onOpenExport, onOpenTemplates, onOpenAi }) {
     </header>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
