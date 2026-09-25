@@ -17,6 +17,9 @@ import {
   Wand2 
 } from 'lucide-react';
 import { usePortfolio } from '../../context/PortfolioContext';
+import { useAuth } from '../../context/AuthContext';
+import { signOut } from 'firebase/auth';
+import { auth } from '../../firebase';
 
 export function Navbar({ onOpenExport, onOpenTemplates, onOpenAi }) {
   const { 
@@ -36,6 +39,8 @@ export function Navbar({ onOpenExport, onOpenTemplates, onOpenAi }) {
   } = usePortfolio();
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [profileOpen, setProfileOpen] = useState(false);
+  const { user } = useAuth();
 
   return (
     <header className="h-16 bg-slate-900 border-b border-slate-800 px-4 flex items-center justify-between select-none z-30 shrink-0">
@@ -68,7 +73,7 @@ export function Navbar({ onOpenExport, onOpenTemplates, onOpenAi }) {
           </button>
 
           {dropdownOpen && (
-            <div className="absolute top-full left-0 mt-1.5 w-64 bg-slate-900 border border-slate-700 rounded-xl shadow-2xl py-1.5 z-50">
+            <div className="absolute top-full left-0 mt-1.5 w-64 bg-slate-900 border border-slate-700 rounded-xl shadow-2xl py-1.5 z-[100]">
               <div className="px-3 py-1.5 text-xs font-semibold uppercase text-slate-400 border-b border-slate-800">
                 Your Portfolios
               </div>
@@ -176,7 +181,6 @@ export function Navbar({ onOpenExport, onOpenTemplates, onOpenAi }) {
           <span className="hidden lg:inline">Mobile</span>
         </button>
       </div>
-
       {/* Right Actions */}
       <div className="flex items-center gap-2 sm:gap-3">
         {/* AI Assistant button */}
@@ -234,7 +238,72 @@ export function Navbar({ onOpenExport, onOpenTemplates, onOpenAi }) {
             </>
           )}
         </button>
+        {/* Profile */}
+        <div className="relative">
+          <button
+            onClick={() => setProfileOpen(!profileOpen)}
+            title={user?.displayName || user?.email || "Profile"}
+            className="w-9 h-9 rounded-full overflow-hidden border-2 border-indigo-400/50 hover:border-indigo-300 bg-slate-800 flex items-center justify-center transition-all hover:scale-105"
+          >
+            <span className="text-sm font-bold text-white">
+              {(() => {
+                const name = user?.displayName || user?.email || user?.phoneNumber || "User";
+                const parts = name.trim().split(/\s+/);
+                if (parts.length >= 2) {
+                  return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+                }
+                return name.slice(0, 2).toUpperCase();
+              })()}
+            </span>
+          </button>
+
+          {profileOpen && (
+            <div className="absolute right-[calc(100%+8px)] top-0 w-60 rounded-2xl border border-white/10 bg-[#0b1020] shadow-2xl p-3 z-[100]">
+              <div className="flex items-center gap-3 p-2 border-b border-white/10 pb-3">
+                {user?.photoURL ? (
+                  <img
+                    src={user.photoURL}
+                    alt="Profile"
+                    className="w-10 h-10 rounded-full object-cover"
+                  />
+                ) : (
+                  <div className="w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center text-white font-semibold">
+                    {(user?.displayName || user?.email || user?.phoneNumber || "U")
+                      .charAt(0)
+                      .toUpperCase()}
+                  </div>
+                )}
+
+                <div className="min-w-0">
+                  <p className="text-sm font-semibold text-white truncate">
+                    {user?.displayName || "FolioCraft User"}
+                  </p>
+                  <p className="text-xs text-slate-400 truncate">
+                    {user?.email || user?.phoneNumber || ""}
+                  </p>
+                </div>
+              </div>
+
+              <button
+                onClick={() => signOut(auth)}
+                className="w-full mt-3 rounded-xl px-3 py-2 text-left text-sm text-red-400 hover:bg-red-500/10 transition-all"
+              >
+                Logout
+              </button>
+            </div>
+          )}
+        </div>
       </div>
     </header>
   );
 }
+
+
+
+
+
+
+
+
+
+
