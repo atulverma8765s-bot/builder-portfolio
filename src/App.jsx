@@ -15,7 +15,9 @@ export default function App() {
   }, []);
 
   // Check if viewing a public portfolio route e.g. /p/alex-rivera
-  const publicMatch = currentPath.match(/^\/p\/([^/]+)/);
+  const basePath = import.meta.env.BASE_URL.replace(/\/$/, '');
+  const publicPath = currentPath.startsWith(basePath) ? currentPath.slice(basePath.length) || '/' : currentPath;
+  const publicMatch = publicPath.match(/^\/p\/([^/]+)/);
   if (publicMatch) {
     const slug = publicMatch[1];
     return <PublicPortfolioPage slug={slug} />;

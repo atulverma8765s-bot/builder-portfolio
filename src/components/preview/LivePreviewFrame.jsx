@@ -30,7 +30,7 @@ export function LivePreviewFrame() {
         <div className="flex items-center gap-2">
           {currentPortfolio?.slug && (
             <a
-              href={`/p/${currentPortfolio.slug}`}
+              href={`${import.meta.env.BASE_URL}p/${currentPortfolio.slug}`}
               target="_blank"
               rel="noopener noreferrer"
               title="Open full page in new tab"
