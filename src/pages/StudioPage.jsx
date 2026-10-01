@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
-import { 
-  User, 
-  UserCheck, 
-  Cpu, 
-  FolderGit2, 
-  Briefcase, 
-  Sparkles, 
-  Quote, 
-  GraduationCap, 
-  Mail, 
-  Layers 
+import {
+  User,
+  UserCheck,
+  Cpu,
+  FolderGit2,
+  Briefcase,
+  Sparkles,
+  Quote,
+  GraduationCap,
+  Mail
 } from 'lucide-react';
+
 import { usePortfolio } from '../context/PortfolioContext';
 import { Navbar } from '../components/layout/Navbar';
 import { TabNavigation } from '../components/layout/TabNavigation';
@@ -33,12 +33,12 @@ import { ExportModal } from '../components/modals/ExportModal';
 import { AIHelperModal } from '../components/modals/AIHelperModal';
 
 export function StudioPage() {
-  const { 
-    activeTab, 
-    setActiveTab, 
-    activeSectionSubTab, 
+  const {
+    activeTab,
+    setActiveTab,
+    activeSectionSubTab,
     setActiveSectionSubTab,
-    isLoading 
+    isLoading
   } = usePortfolio();
 
   const [isExportOpen, setIsExportOpen] = useState(false);
@@ -63,13 +63,17 @@ export function StudioPage() {
         <div className="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center animate-spin text-white">
           <Sparkles className="w-5 h-5" />
         </div>
-        <p className="text-sm font-medium">Loading FolioCraft Studio...</p>
+
+        <p className="text-sm font-medium">
+          Loading FolioCraft Studio...
+        </p>
       </div>
     );
   }
 
   return (
     <div className="h-screen w-screen flex flex-col bg-slate-950 text-slate-100 overflow-hidden font-sans">
+
       {/* Top Studio Navbar */}
       <Navbar
         onOpenExport={() => setIsExportOpen(true)}
@@ -79,17 +83,23 @@ export function StudioPage() {
 
       {/* Main Split Layout */}
       <div className="flex-1 flex overflow-hidden">
+
         {/* Left Drawer / Editor Sidebar */}
         <aside className="w-full md:w-[460px] lg:w-[500px] border-r border-slate-800 bg-slate-950/95 flex flex-col shrink-0 overflow-hidden z-20 shadow-xl">
-          {/* Top Tabs */}
-          <TabNavigation />
 
-          {/* Content Sub-Navigation (visible when activeTab === 'content') */}
+          {/* Top Tabs */}
+          <TabNavigation
+            onOpenTemplates={() => setIsTemplatesOpen(true)}
+          />
+
+          {/* Content Sub-Navigation */}
           {activeTab === 'content' && (
             <div className="flex items-center gap-1 px-3 py-2 border-b border-slate-800/80 bg-slate-900/40 overflow-x-auto no-scrollbar shrink-0">
+
               {contentSubtabs.map((sub) => {
                 const Icon = sub.icon;
                 const isSelected = activeSectionSubTab === sub.id;
+
                 return (
                   <button
                     key={sub.id}
@@ -105,11 +115,14 @@ export function StudioPage() {
                   </button>
                 );
               })}
+
             </div>
           )}
 
           {/* Editor Body Scroll Area */}
           <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-6">
+
+            {/* Content */}
             {activeTab === 'content' && (
               <>
                 {activeSectionSubTab === 'hero' && <HeroEditor />}
@@ -124,8 +137,12 @@ export function StudioPage() {
               </>
             )}
 
-            {activeTab === 'design' && <DesignEditor />}
+            {/* Design & Style */}
+            {activeTab === 'design' && (
+              <DesignEditor />
+            )}
 
+            {/* Sections */}
             {activeTab === 'sections' && (
               <SectionManager
                 onSelectSection={(key) => {
@@ -135,9 +152,16 @@ export function StudioPage() {
               />
             )}
 
-            {activeTab === 'settings' && <SettingsEditor />}
+            {/* Settings */}
+            {activeTab === 'settings' && (
+              <SettingsEditor />
+            )}
 
-            {activeTab === 'messages' && <MessagesInbox />}
+            {/* Messages */}
+            {activeTab === 'messages' && (
+              <MessagesInbox />
+            )}
+
           </div>
         </aside>
 
@@ -145,21 +169,27 @@ export function StudioPage() {
         <main className="hidden md:flex flex-1 overflow-hidden">
           <LivePreviewFrame />
         </main>
+
       </div>
 
-      {/* Modals */}
+      {/* Template Selector Modal */}
       <TemplateSelectorModal
         isOpen={isTemplatesOpen}
         onClose={() => setIsTemplatesOpen(false)}
       />
+
+      {/* Export Modal */}
       <ExportModal
         isOpen={isExportOpen}
         onClose={() => setIsExportOpen(false)}
       />
+
+      {/* AI Helper Modal */}
       <AIHelperModal
         isOpen={isAiOpen}
         onClose={() => setIsAiOpen(false)}
       />
+
     </div>
   );
 }

@@ -1,7 +1,8 @@
-import express from 'express';
+﻿import express from 'express';
 import cors from 'cors';
 import path from 'path';
 import fs from 'fs';
+import multer from 'multer';
 import { fileURLToPath } from 'url';
 import { db } from './database.js';
 import { generateStandaloneHtml } from './exportTemplate.js';
@@ -11,11 +12,54 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const DIST_PATH = path.join(__dirname, '..', 'dist');
 
+const UPLOADS_PATH = path.join(__dirname, 'uploads');
+
+if (!fs.existsSync(UPLOADS_PATH)) {
+  fs.mkdirSync(UPLOADS_PATH, { recursive: true });
+}
+
+const storage = multer.diskStorage({
+  destination: (_req, _file, cb) => {
+    cb(null, UPLOADS_PATH);
+  },
+  filename: (_req, file, cb) => {
+    const ext = path.extname(file.originalname).toLowerCase();
+    const safeName = path
+      .basename(file.originalname, ext)
+      .replace(/[^a-zA-Z0-9-_]/g, '-')
+      .slice(0, 50);
+
+    cb(null, `${Date.now()}-${safeName}${ext}`);
+  },
+});
+
+const upload = multer({
+  storage,
+  limits: {
+    fileSize: 5 * 1024 * 1024,
+  },
+  fileFilter: (_req, file, cb) => {
+    const allowedTypes = [
+      'image/jpeg',
+      'image/png',
+      'image/webp',
+      'image/gif',
+    ];
+
+    if (allowedTypes.includes(file.mimetype)) {
+      cb(null, true);
+    } else {
+      cb(new Error('Only JPG, PNG, WEBP and GIF images are allowed.'));
+    }
+  },
+});
+
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
+app.use('/uploads', express.static(UPLOADS_PATH));
 
 // Request logging
 app.use((req, res, next) => {
@@ -28,6 +72,27 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', time: new Date().toISOString() });
 });
 
+// IMAGE UPLOAD
+app.post('/api/upload', upload.single('image'), (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ error: 'No image uploaded.' });
+    }
+
+    const baseUrl = `${req.protocol}://${req.get('host')}`;
+    const imageUrl = `${baseUrl}/uploads/${req.file.filename}`;
+
+    res.status(201).json({
+      success: true,
+      url: imageUrl,
+      filename: req.file.filename,
+    });
+  } catch (err) {
+    res.status(400).json({
+      error: err.message || 'Image upload failed.',
+    });
+  }
+});
 // GET all portfolios
 app.get('/api/portfolios', (req, res) => {
   try {
@@ -211,3 +276,7 @@ if (fs.existsSync(DIST_PATH)) {
 app.listen(PORT, () => {
   console.log(`[FolioCraft API Server] Running on http://localhost:${PORT}`);
 });
+
+
+
+
