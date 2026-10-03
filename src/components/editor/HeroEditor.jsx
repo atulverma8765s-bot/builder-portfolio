@@ -1,10 +1,16 @@
-import React from 'react';
+﻿import React, { useRef, useState } from 'react';
 import { User, Sparkles, Link as LinkIcon, Globe, Github, Linkedin, Twitter, Mail, Calendar } from 'lucide-react';
 import { usePortfolio } from '../../context/PortfolioContext';
 
 export function HeroEditor() {
   const { currentPortfolio, updateCurrentPortfolio } = usePortfolio();
   const hero = currentPortfolio?.hero || {};
+  const UPLOAD_API = import.meta.env.DEV
+    ? 'http://localhost:5000/api/upload'
+    : UPLOAD_API;
+
+  const [isUploadingAvatar, setIsUploadingAvatar] = useState(false);
+  const avatarInputRef = useRef(null);
 
   const handleHeroChange = (field, value) => {
     updateCurrentPortfolio((prev) => ({
@@ -42,6 +48,69 @@ export function HeroEditor() {
     }));
   };
 
+  const handleAvatarUpload = async (event) => {
+    const file = event.target.files?.[0];
+
+    if (!file) return;
+
+    const allowedTypes = [
+      'image/jpeg',
+      'image/png',
+      'image/webp',
+      'image/gif',
+    ];
+
+    if (!allowedTypes.includes(file.type)) {
+      alert('Please select a JPG, PNG, WEBP or GIF image.');
+      event.target.value = '';
+      return;
+    }
+
+    if (file.size > 5 * 1024 * 1024) {
+      alert('Image size must be 5 MB or smaller.');
+      event.target.value = '';
+      return;
+    }
+
+    try {
+      setIsUploadingAvatar(true);
+
+      const formData = new FormData();
+      formData.append('image', file);
+
+      const response = await fetch(
+        UPLOAD_API,
+        {
+          method: 'POST',
+          body: formData,
+        }
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Image upload failed.');
+      }
+
+      if (!data.url) {
+        throw new Error('Upload succeeded but no image URL was returned.');
+      }
+
+      handleHeroChange('avatarUrl', data.url);
+
+      alert('Profile image uploaded successfully!');
+    } catch (error) {
+      console.error('Avatar upload error:', error);
+      alert(error.message || 'Image upload failed.');
+    } finally {
+      setIsUploadingAvatar(false);
+
+      if (event.target) {
+        event.target.value = '';
+      }
+    }
+  };
+
   const avatarPresets = [
     "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=80",
     "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&auto=format&fit=crop&q=80",
@@ -64,32 +133,78 @@ export function HeroEditor() {
 
       {/* Avatar Section */}
       <div className="bg-slate-900/80 p-4 rounded-xl border border-slate-800 space-y-3">
-        <label className="block text-xs font-semibold text-slate-300">Profile Photo / Avatar</label>
+        <label className="block text-xs font-semibold text-slate-300">
+          Profile Photo / Avatar
+        </label>
+
         <div className="flex items-center gap-4">
           <img
-            src={hero.avatarUrl || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=80"}
+            src={
+              hero.avatarUrl ||
+              "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=80"
+            }
             alt="Avatar preview"
-            className="w-14 h-14 rounded-full object-cover border-2 border-indigo-500 shadow-md shrink-0 bg-slate-800"
+            className="w-16 h-16 rounded-full object-cover border-2 border-indigo-500 shadow-md shrink-0 bg-slate-800"
           />
-          <div className="flex-1 space-y-1.5">
+
+          <div className="flex-1 space-y-2">
+            <div className="flex flex-wrap items-center gap-2">
+              <input
+                ref={avatarInputRef}
+                type="file"
+                accept="image/jpeg,image/png,image/webp,image/gif"
+                onChange={handleAvatarUpload}
+                className="hidden"
+              />
+
+              <button
+                type="button"
+                onClick={() => avatarInputRef.current?.click()}
+                disabled={isUploadingAvatar}
+                className="px-3 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed text-xs font-semibold text-white transition-colors"
+              >
+                {isUploadingAvatar ? 'Uploading...' : 'Upload Image'}
+              </button>
+
+              {hero.avatarUrl && (
+                <button
+                  type="button"
+                  onClick={() => handleHeroChange('avatarUrl', '')}
+                  className="px-3 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-300 transition-colors"
+                >
+                  Remove
+                </button>
+              )}
+            </div>
+
             <input
               type="text"
               value={hero.avatarUrl || ""}
               onChange={(e) => handleHeroChange("avatarUrl", e.target.value)}
-              placeholder="https://example.com/photo.jpg"
+              placeholder="Or paste an image URL..."
               className="w-full px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-700 text-xs text-slate-200 focus:outline-none focus:border-indigo-500"
             />
+
+            <p className="text-[10px] text-slate-500">
+              JPG, PNG, WEBP or GIF • Maximum 5 MB
+            </p>
+
             <div className="flex items-center gap-2">
               <span className="text-[11px] text-slate-400">Sample Avatars:</span>
+
               <div className="flex gap-1.5">
                 {avatarPresets.map((url, i) => (
                   <button
                     key={i}
                     type="button"
                     onClick={() => handleHeroChange("avatarUrl", url)}
-                    className="w-5 h-5 rounded-full overflow-hidden border border-slate-600 hover:scale-110 transition-transform"
+                    className="w-6 h-6 rounded-full overflow-hidden border border-slate-600 hover:scale-110 transition-transform"
                   >
-                    <img src={url} alt={`Preset ${i}`} className="w-full h-full object-cover" />
+                    <img
+                      src={url}
+                      alt={`Preset ${i}`}
+                      className="w-full h-full object-cover"
+                    />
                   </button>
                 ))}
               </div>
@@ -141,7 +256,7 @@ export function HeroEditor() {
           type="text"
           value={hero.badge || ""}
           onChange={(e) => handleHeroChange("badge", e.target.value)}
-          placeholder="e.g. 🟢 Available for hire or consulting"
+          placeholder="e.g. ðŸŸ¢ Available for hire or consulting"
           className="w-full px-3 py-2 rounded-lg bg-slate-900 border border-slate-800 text-xs text-slate-200 focus:outline-none focus:border-indigo-500"
         />
       </div>
@@ -282,3 +397,5 @@ export function HeroEditor() {
     </div>
   );
 }
+
+

@@ -1,2 +1,9 @@
 ﻿node_modules/
 dist/
+
+# Backup files
+*.backup.js
+*.backup.jsx
+
+# Uploaded files
+server/uploads/
