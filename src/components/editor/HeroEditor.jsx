@@ -7,7 +7,7 @@ export function HeroEditor() {
   const hero = currentPortfolio?.hero || {};
   const UPLOAD_API = import.meta.env.DEV
     ? 'http://localhost:5000/api/upload'
-    : UPLOAD_API;
+    : 'https://builder-portfolio-api.onrender.com/api/upload';
 
   const [isUploadingAvatar, setIsUploadingAvatar] = useState(false);
   const avatarInputRef = useRef(null);
@@ -397,5 +397,4 @@ export function HeroEditor() {
     </div>
   );
 }
-
 
